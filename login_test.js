@@ -12,7 +12,7 @@ Scenario('test the login', async  ({ I }) => {
     await I.waitForVisible(locate('label').withAttr({id : 'passwordLabel'}), 30)
     await I.fillField(locate('input').withAttr({ id: 'password' }), process.env.PASSWORD)
     await I.click(".//button[@id = 'loginSubmit']")
-    await I.waitForValue("//a[@id= 'Home']")
+    await I.waitForVisible("//a[@id= 'Home']", 30)
 });
 
 After(()=> {
