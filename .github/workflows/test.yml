@@ -10,6 +10,7 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    environment: tst
     env:
       MY_URL: ${{ vars.MY_URL }}
 
