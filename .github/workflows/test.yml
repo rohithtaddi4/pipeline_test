@@ -13,6 +13,8 @@ jobs:
     environment: tst
     env:
       MY_URL: ${{ vars.MY_URL }}
+      USER_NAME: ${{ secrets.USER_NAME }}
+      PASSWORD: ${{ secrets.PASSWORD }}
 
     steps:
     - name: Checkout repository

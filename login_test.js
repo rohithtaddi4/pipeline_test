@@ -5,11 +5,14 @@ console.log('env var is')
 console.log(process.env.MY_URL)
 })
 
-Scenario('test something',  ({ I }) => {
-    console.log('env var is')
-  I.amOnPage('https://codecept.io/playwright/#setup')
-  console.log(process.env.MY_URL)
-
+Scenario('test the login', async  ({ I }) => {
+    await I.amOnPage(process.env.MY_URL)
+    await I.waitForVisible(locate('label').withAttr({id : 'emailLabel'}), 30)
+    await I.fillField(locate('input').withAttr({ id: 'email' }), process.env.USER_NAME)
+    await I.waitForVisible(locate('label').withAttr({id : 'passwordLabel'}), 30)
+    await I.fillField(locate('input').withAttr({ id: 'password' }), process.env.PASSWORD)
+    await I.click(".//button[@id = 'loginSubmit']")
+    await I.waitForValue("//a[@id= 'Home']")
 });
 
 After(()=> {
