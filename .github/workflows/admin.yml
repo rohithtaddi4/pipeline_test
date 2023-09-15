@@ -8,8 +8,8 @@ on:
   #   - cron: '0 0 * * *'  # Schedule to run every day at midnight UTC
 
 jobs:
+  name: Admin Tests Pipeline
   build:
-    name: Admin Tests Pipeline
     runs-on: ubuntu-latest
     environment: tst
     env:
