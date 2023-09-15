@@ -9,6 +9,7 @@ on:
 
 jobs:
   build:
+    name: Login Pipeline
     runs-on: ubuntu-latest
     environment: tst
     env:
