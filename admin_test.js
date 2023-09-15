@@ -1,11 +1,11 @@
-Feature('login').tag('@lambda-login');
+Feature('login').tag('@lambda-admin');
 
 Before(()=> {
 console.log('env var is')
 console.log(process.env.MY_URL)
 })
 
-Scenario('test the login', async  ({ I }) => {
+Scenario('test the admin', async  ({ I }) => {
     await I.amOnPage(process.env.MY_URL)
     await I.waitForVisible(locate('label').withAttr({id : 'emailLabel'}), 30)
     await I.fillField(locate('input').withAttr({ id: 'email' }), process.env.USER_NAME)
@@ -18,5 +18,4 @@ Scenario('test the login', async  ({ I }) => {
 After(()=> {
     console.log('env var is')
     console.log(process.env.MY_URL)
-
 })
