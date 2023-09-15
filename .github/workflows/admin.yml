@@ -26,7 +26,10 @@ jobs:
         node-version: '14'
 
     - name: Install dependencies
-      run: npm install
+      run: npm install #npx playwright install  
+
+    - name: Install playwirght
+      run: npx playwright install
 
     - name: Run login tests
       run: npx codeceptjs run --grep "@lambda-admin" --steps   # Replace with the command to run your tests
