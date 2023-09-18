@@ -9,7 +9,7 @@ on:
 
 jobs:
   build:
-    name: Login Pipeline
+    name: Login Tests
     runs-on: ubuntu-latest
     environment: tst
     env:
@@ -17,6 +17,7 @@ jobs:
       USER_NAME: ${{ secrets.USER_NAME }}
       PASSWORD: ${{ secrets.PASSWORD }}
 
+    steps:
     - name: Checkout repository
       uses: actions/checkout@v2
 
@@ -26,10 +27,10 @@ jobs:
         node-version: '14'
 
     - name: Install dependencies
-      run: npm install
+      run: npm install #npx playwright install  
 
     - name: Install playwirght
       run: npx playwright install
 
-    - name: Run tests
+    - name: Run login tests
       run: npx codeceptjs run --grep "@lambda-login" --steps   # Replace with the command to run your tests
