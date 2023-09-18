@@ -17,11 +17,6 @@ jobs:
       USER_NAME: ${{ secrets.USER_NAME }}
       PASSWORD: ${{ secrets.PASSWORD }}
 
-    steps:
-    - name: Set Custom Name
-      with:
-        custom-name: Login Tests
-
     - name: Checkout repository
       uses: actions/checkout@v2
 

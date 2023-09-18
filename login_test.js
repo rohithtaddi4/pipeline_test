@@ -1,38 +1,89 @@
-Feature('login').tag('@lambda-login');
+const { I } = inject();
 
-Before(()=> {
-console.log('env var is')
-console.log(process.env.MY_URL)
+Feature('login of lambdaX').tag('@lambda-login').retry(0);
+
+Before(() => {
+    const startTime = new Date();
+    console.log('Start Time is ' + startTime)
 })
 
-// action.js
+const loginPage = process.env.MY_URL
+const invalidPassword = ".//*[@id = 'passwordError']"
+const invalidEmail = ".//*[@id = 'emailError']"
+const loginButton = ".//button[@id = 'loginSubmit']"
+const home = "//a[@id= 'Home']"
+const agreements = "//a[@id= 'Agreements']"
+const analytics = "//a[@id= 'Analytics']"
+const calendar = "//a[@id= 'Calendar']"
+const configure = "//a[@id= 'Configure']"
+const admin = "//a[@id= 'Admin']"
 
-const core = require('@actions/core');
-
-async function run() {
-  try {
-    const customName = core.getInput('custom-name');
-    console.log(`::set-output name=workflow_name::${customName}`);
-  } catch (error) {
-    core.setFailed(error.message);
-  }
+//methods
+async function enterCredentials (email, password) { //
+await I.amOnPage(loginPage)
+await I.waitForVisible(locate('label').withAttr({id : 'emailLabel'}), 30)
+await I.fillField(locate('input').withAttr({ id: 'email' }), email)
+await I.waitForVisible(locate('label').withAttr({id : 'passwordLabel'}), 30)
+await I.fillField(locate('input').withAttr({ id: 'password' }), password)
 }
 
-run();
 
-
-Scenario('test the login', async  ({ I }) => {
-    await I.amOnPage(process.env.MY_URL)
-    await I.waitForVisible(locate('label').withAttr({id : 'emailLabel'}), 30)
-    await I.fillField(locate('input').withAttr({ id: 'email' }), process.env.USER_NAME)
-    await I.waitForVisible(locate('label').withAttr({id : 'passwordLabel'}), 30)
-    await I.fillField(locate('input').withAttr({ id: 'password' }), process.env.PASSWORD)
-    await I.click(".//button[@id = 'loginSubmit']")
-    await I.waitForVisible("//a[@id= 'Home']", 30)
+Scenario('lambdaX::test-login-with-correct-credentials', async ({ I }) => {
+    await enterCredentials(process.env.USER_NAME, process.env.PASSWORD)
+    await I.click(loginButton)
+    await I.wait(2)
+    await I.refreshPage()
+    await checkHomePage()
 });
 
-After(()=> {
-    console.log('env var is')
-    console.log(process.env.MY_URL)
+Scenario.skip('lambdaX::test-login-page-local', async () => {
+    await enterCredentials('TestUser@gmail.com', '•••••••')
+    await I.click(loginButton)
+    await I.waitForVisible(invalidMessage, 30)
+});
 
+Scenario('lambdaX::test-login-page-incorrect-email-format', async () => {
+    await enterCredentials('TestUser', process.env.PASSWORD)
+    await I.waitForVisible(invalidEmail, 30)
+});
+
+Scenario('lambdaX::test-login-page-empty-password-field', async () => {
+    await enterCredentials(process.env.USER_NAME, '')
+    const isButtonDisabled = await I.grabAttributeFrom(loginButton, 'disabled');
+    if (isButtonDisabled === null) {
+        throw new Error('Button is not disabled')
+    }
+});
+
+Scenario('lambdaX::test-login-page-empty-email-field', async () => {
+    await enterCredentials('', process.env.PASSWORD)
+    const isButtonDisabled = await I.grabAttributeFrom(loginButton, 'disabled');
+    if (isButtonDisabled === null) {
+        throw new Error('Button is not disabled')
+    }
+});
+
+Scenario.skip('lambdaX::test-login-page-incorrect-email-local', async () => {
+    await enterCredentials('testuser@gmail.com', process.env.PASSWORD)
+    await I.click(loginButton)
+    await I.waitForVisible(invalidMessage, 30)
+});
+
+Scenario('lambdaX::test-login-page-incorrect-password', async () => {
+    await enterCredentials(process.env.USER_NAME, '0000000Admin#')
+    await I.click(loginButton)
+    await I.see('Invalid email or password')
+});
+
+Scenario('lambdaX::test-login-page-empty-credentials', async () => {
+    await enterCredentials('', '')
+    const isButtonDisabled = await I.grabAttributeFrom(loginButton, 'disabled');
+    if (isButtonDisabled === null) {
+        throw new Error('Button is not disabled')
+    }
+});
+
+After(() => {
+    const startTime = new Date();
+    console.log('Start Time is ' + startTime)
 })
