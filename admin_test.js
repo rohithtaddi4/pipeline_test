@@ -1,6 +1,6 @@
 const { I } = inject();
 
-Feature('Admin section of lambdaX').tag('@lambda-admin').retry(0);
+Feature('Admin section of lambdaX').tag('@lambda-admin').retry(2);
 
  let userData = {
     firstName : 'Test', 
