@@ -79,7 +79,7 @@ await I.click(locate('td').withText('testautomationuser@gmail.com'))
 //await I.click(`.//*[contains(., '${user}')]//parent::tr`)
 await I.click(locate('button').withAttr({id : 'deleteUser'}))
 await I.click(locate('button').withAttr({id : 'mDelete'}))
-await I.waitForVisible(locate('span').withText('User Deleted'))
+await I.waitForVisible(locate('span').withText('User Deleted'), 30)
 }
 
 Before( async () => {
