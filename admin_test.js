@@ -165,7 +165,7 @@ Scenario('lambdaX::test-admin-create-users-with-missing-email', async () => {
 Scenario.skip('lambdaX::test-admin-create-users-with-missing-usergroup', async () => {
     userData.group = ''
     await enterCredentials(process.env.USER_NAME, process.env.PASSWORD)
-    await I.waitForVisible(adminOption, 30)
+    await I.waitForVisible(adminOption, 31)
     await I.click(adminOption)
     await I.waitForVisible(users, 30)
     await I.click(users)
