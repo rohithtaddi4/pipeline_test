@@ -19,7 +19,6 @@ jobs:
 
     steps:
     - name: Set Custom Name
-      uses: rohithtaddi4/pipeline_test/login_test.js@main
       with:
         custom-name: Login Tests
 
