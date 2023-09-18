@@ -68,7 +68,7 @@ await I.waitForVisible(locate('td').withText('Automation'))
 await I.waitForVisible(locate('td').withText('testautomationuser@gmail.com'))
 }
 
-async function deleteUser(user){
+async function deleteUsers(user){
 await I.clearField(locate('input').withAttr({id: 'adminSearch'}))
 await I.waitForVisible(locate('input').withAttr({id: 'adminSearch'}), 30)
 await I.click(locate('input').withAttr({id: 'adminSearch'}))
@@ -105,7 +105,7 @@ Scenario('lambdaX::test-admin-create-users-with-valid-data', async () => {
     await verifyUser()
     await I.click(users) 
     await verifyUser()
-    await deleteUser(userData.eMail)
+    await deleteUsers(userData.eMail)
     deleteUser = false
 });
 
@@ -122,7 +122,7 @@ Scenario('lambdaX::test-admin-user-creation-with-existed-email', async () => {
    // await I.waitForVisible(locate('*').withText(`A user with email ${userData.eMail} already exists`))
     await I.click(close)
     await I.click(confirm)
-    await deleteUser(userData.eMail)
+    await deleteUsers(userData.eMail)
     deleteUser = false
 });
 
