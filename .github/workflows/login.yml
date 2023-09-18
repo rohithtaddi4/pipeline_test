@@ -19,7 +19,7 @@ jobs:
 
     steps:
     - name: Set Custom Name
-      uses: ../login_test.js
+      uses: rohithtaddi4/pipeline_test/login_test.js
       with:
         custom-name: Login Tests
 
