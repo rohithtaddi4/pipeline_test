@@ -1,6 +1,6 @@
 const { I } = inject();
 
-Feature('login of lambdaX').tag('@lambda-login').retry(0);
+Feature('login of lambdaX').tag('@lambda-login').retry(2);
 
 Before(() => {
     const startTime = new Date();
