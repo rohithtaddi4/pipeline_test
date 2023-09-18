@@ -27,6 +27,14 @@ await I.waitForVisible(locate('label').withAttr({id : 'passwordLabel'}), 30)
 await I.fillField(locate('input').withAttr({ id: 'password' }), password)
 }
 
+async function checkHomePage(){
+    await I.seeElement(home)
+    await I.seeElement(agreements)
+    await I.seeElement(analytics)
+    await I.seeElement(calendar)
+    await I.seeElement(configure)
+    await I.seeElement(admin)
+  }
 
 Scenario('lambdaX::test-login-with-correct-credentials', async ({ I }) => {
     await enterCredentials(process.env.USER_NAME, process.env.PASSWORD)
