@@ -5,6 +5,22 @@ console.log('env var is')
 console.log(process.env.MY_URL)
 })
 
+// action.js
+
+const core = require('@actions/core');
+
+async function run() {
+  try {
+    const customName = core.getInput('custom-name');
+    console.log(`::set-output name=workflow_name::${customName}`);
+  } catch (error) {
+    core.setFailed(error.message);
+  }
+}
+
+run();
+
+
 Scenario('test the login', async  ({ I }) => {
     await I.amOnPage(process.env.MY_URL)
     await I.waitForVisible(locate('label').withAttr({id : 'emailLabel'}), 30)

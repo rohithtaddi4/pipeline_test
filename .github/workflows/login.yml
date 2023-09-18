@@ -18,6 +18,11 @@ jobs:
       PASSWORD: ${{ secrets.PASSWORD }}
 
     steps:
+    - name: Set Custom Name
+      uses: ../login_test.js
+      with:
+        custom-name: Login Tests
+
     - name: Checkout repository
       uses: actions/checkout@v2
 
