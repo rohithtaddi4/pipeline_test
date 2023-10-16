@@ -50,7 +50,7 @@ Scenario.skip('lambdaX::test-login-page-localss', async () => {
     await I.waitForVisible(invalidMessage, 30)
 });
 
-Scenario.skip('lambdaX::test-login-page-incorrect-email-formatss', async () => {
+Scenario('lambdaX::test-login-page-incorrect-email-formatss', async () => {
     await enterCredentials('TestUser', process.env.PASSWORD)
     await I.waitForVisible(invalidEmail, 30)
 });
