@@ -95,3 +95,40 @@ After(() => {
     const startTime = new Date();
     console.log('Start Time is ' + startTime)
 })
+
+
+// name: Automated Tests
+
+// on:
+//   push:
+//    branches: 
+//     - 'main'
+//   # schedule:
+//   #   - cron: '0 0 * * *'  # Schedule to run every day at midnight UTC
+
+// jobs:
+//   build:
+//     name: Login Tests
+//     runs-on: ubuntu-latest
+//     environment: tst
+//     env:
+//       MY_URL: ${{ vars.MY_URL }}
+//       USER_NAME: ${{ secrets.USER_NAME }}
+//       PASSWORD: ${{ secrets.PASSWORD }}
+
+//     steps:
+//     - name: Checkout repository
+//       uses: actions/checkout@v2
+    
+//     - name: Set up Node.js
+//       uses: actions/setup-node@v2
+//       with:
+//         node-version: '18'
+//         cache: 'npm'
+//         cache-dependency-path: package-lock.json
+
+//     - run: npm install #npx playwright install  
+//    # - run: npx playwright install
+
+//     - name: Run login tests
+//       run: npx codeceptjs run --grep "@lambda-login" --steps   # Replace with the command to run your tests
