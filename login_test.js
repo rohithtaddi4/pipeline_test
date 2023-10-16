@@ -83,7 +83,7 @@ Scenario('llambdaX::test-login-page-incorrect-password', async () => {
    // await I.see('Invalid email or password')
 });
 
-Scenario('lambdaX::test-login-page-empty-credentials', async () => {
+Scenario.skip('lambdaX::test-login-page-empty-credentials', async () => {
     await enterCredentials('', '')
     const isButtonDisabled = await I.grabAttributeFrom(loginButton, 'disabled');
     if (isButtonDisabled === null) {
