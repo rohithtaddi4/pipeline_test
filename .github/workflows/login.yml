@@ -28,5 +28,8 @@ jobs:
       - name: Install dependencies
         run: npm install
 
+      - name: Install playwirght
+        run: npx playwright install
+
       - name: Test
         run: npx codeceptjs run --grep "@lambda-login" --steps
