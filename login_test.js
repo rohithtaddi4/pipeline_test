@@ -44,7 +44,7 @@ Scenario.skip('lambdaX::test-login-with-correct-credentials', async ({ I }) => {
     await checkHomePage()
 });
 
-Scenario.skip('lambdaX::test-login-page-local', async () => {
+Scenario.skip('lambdaX::test-login-page-localss', async () => {
     await enterCredentials('TestUser@gmail.com', '•••••••')
     await I.click(loginButton)
     await I.waitForVisible(invalidMessage, 30)
