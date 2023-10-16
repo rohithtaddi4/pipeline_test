@@ -26,4 +26,4 @@ jobs:
         run: npm install
 
       - name: Test
-        run: npm run codeceptjs --grep 'lambdaX::test-login-page-incorrect-password' --steps
+        run: npx codeceptjs run --grep 'lambdaX::test-login-page-incorrect-password' --steps
