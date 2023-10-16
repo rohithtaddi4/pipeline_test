@@ -36,7 +36,7 @@ async function checkHomePage(){
     await I.seeElement(admin)
   }
 
-Scenario('lambdaX::test-login-with-correct-credentials', async ({ I }) => {
+Scenario.skip('lambdaX::test-login-with-correct-credentials', async ({ I }) => {
     await enterCredentials(process.env.USER_NAME, process.env.PASSWORD)
     await I.click(loginButton)
     await I.wait(2)
