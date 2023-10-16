@@ -26,11 +26,8 @@ jobs:
       with:
         node-version: '14'
         cache: 'npm'
-        cache-dependency-path: package-lock.json
     - run: npm install #npx playwright install  
-
-    - name: Install playwirght
-      run: npx playwright install
+    - run: npx playwright install
 
     - name: Run login tests
       run: npx codeceptjs run --grep "@lambda-login" --steps   # Replace with the command to run your tests
