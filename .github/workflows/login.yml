@@ -34,7 +34,6 @@ jobs:
 
     # - name: Install dependencies
     #   run: npm install #npx playwright install  
-
     - name: Install playwirght
       run: npx playwright install
 
