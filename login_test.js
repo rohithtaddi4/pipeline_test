@@ -77,7 +77,7 @@ Scenario.skip('lambdaX::test-login-page-incorrect-email-local', async () => {
     await I.waitForVisible(invalidMessage, 30)
 });
 
-Scenario.skip('llambdaX::test-login-page-incorrect-password', async () => {
+Scenario('llambdaX::test-login-page-incorrect-password', async () => {
     await enterCredentials(process.env.USER_NAME, '0000000Admin#')
     await I.click(loginButton)
    // await I.see('Invalid email or password')
