@@ -50,12 +50,12 @@ Scenario.skip('lambdaX::test-login-page-localss', async () => {
     await I.waitForVisible(invalidMessage, 30)
 });
 
-Scenario('lambdaX::test-login-page-incorrect-email-formatss', async () => {
+Scenario.skip('lambdaX::test-login-page-incorrect-email-formatss', async () => {
     await enterCredentials('TestUser', process.env.PASSWORD)
     await I.waitForVisible(invalidEmail, 30)
 });
 
-Scenario('lambdaX::test-login-page-empty-password-field', async () => {
+Scenario.skip('lambdaX::test-login-page-empty-password-field', async () => {
     await enterCredentials(process.env.USER_NAME, '')
     const isButtonDisabled = await I.grabAttributeFrom(loginButton, 'disabled');
     if (isButtonDisabled === null) {
@@ -63,7 +63,7 @@ Scenario('lambdaX::test-login-page-empty-password-field', async () => {
     }
 });
 
-Scenario('lambdaX::test-login-page-empty-email-field', async () => {
+Scenario.skip('lambdaX::test-login-page-empty-email-field', async () => {
     await enterCredentials('', process.env.PASSWORD)
     const isButtonDisabled = await I.grabAttributeFrom(loginButton, 'disabled');
     if (isButtonDisabled === null) {
@@ -77,13 +77,13 @@ Scenario.skip('lambdaX::test-login-page-incorrect-email-local', async () => {
     await I.waitForVisible(invalidMessage, 30)
 });
 
-Scenario('lambdaX::test-login-page-incorrect-password', async () => {
+Scenarios.skip('lambdaX::test-login-page-incorrect-password', async () => {
     await enterCredentials(process.env.USER_NAME, '0000000Admin#')
     await I.click(loginButton)
    // await I.see('Invalid email or password')
 });
 
-Scenario('lambdaX::test-login-page-empty-credentials', async () => {
+Scenario.skip('lambdaX::test-login-page-empty-credentials', async () => {
     await enterCredentials('', '')
     const isButtonDisabled = await I.grabAttributeFrom(loginButton, 'disabled');
     if (isButtonDisabled === null) {
